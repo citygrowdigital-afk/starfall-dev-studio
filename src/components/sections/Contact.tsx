@@ -1,12 +1,40 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Send, Mail, Linkedin, MapPin } from "lucide-react";
+import { Mail, Linkedin, MapPin, Github, ArrowUpRight, Download } from "lucide-react";
+
+const channels = [
+  {
+    label: "Email",
+    value: "khyatijain@example.com",
+    href: "mailto:khyatijain@example.com",
+    icon: Mail,
+    handle: "// drop a line",
+  },
+  {
+    label: "LinkedIn",
+    value: "in/khyati-jain",
+    href: "https://linkedin.com/in/khyati-jain",
+    icon: Linkedin,
+    handle: "// let's connect",
+  },
+  {
+    label: "GitHub",
+    value: "@khyati-jain",
+    href: "https://github.com/khyati-jain",
+    icon: Github,
+    handle: "// browse the code",
+  },
+];
 
 export function Contact() {
-  const [sent, setSent] = useState(false);
   return (
     <section id="contact" className="relative py-32">
-      <div className="mx-auto max-w-5xl px-6">
+      {/* ambient glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute left-1/2 top-1/2 h-[520px] w-[520px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[oklch(0.65_0.28_300_/_0.18)] blur-[140px]" />
+        <div className="absolute right-[15%] top-[20%] h-[280px] w-[280px] rounded-full bg-[oklch(0.85_0.18_200_/_0.18)] blur-[120px]" />
+      </div>
+
+      <div className="mx-auto max-w-6xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -15,93 +43,96 @@ export function Contact() {
           className="mb-16 text-center"
         >
           <div className="mb-3 font-mono text-xs uppercase tracking-[0.3em] text-[oklch(0.85_0.18_200)]">
-            06 — Contact
+            06 — Reach out
           </div>
           <h2 className="text-4xl font-bold tracking-tight sm:text-6xl">
             Let's <span className="text-gradient">build something</span>
           </h2>
-          <p className="mt-4 text-muted-foreground">
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
             Open to engineering roles, collaborations, and interesting problems.
+            Pick the channel that works for you — I usually reply within a day.
           </p>
         </motion.div>
 
-        <div className="grid gap-6 md:grid-cols-5">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="rounded-3xl glass-strong p-8 md:col-span-2"
-          >
-            <h3 className="text-lg font-semibold">Reach out directly</h3>
-            <div className="mt-6 space-y-4 text-sm">
-              <a href="mailto:khyatijain@example.com" className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground">
-                <Mail className="h-4 w-4 text-[oklch(0.85_0.18_200)]" />
-                khyatijain@example.com
-              </a>
-              <a href="https://linkedin.com/in/khyati-jain" target="_blank" rel="noreferrer" className="flex items-center gap-3 text-muted-foreground transition-colors hover:text-foreground">
-                <Linkedin className="h-4 w-4 text-[oklch(0.85_0.18_200)]" />
-                linkedin.com/in/khyati-jain
-              </a>
-              <div className="flex items-center gap-3 text-muted-foreground">
-                <MapPin className="h-4 w-4 text-[oklch(0.85_0.18_200)]" />
-                India
-              </div>
-            </div>
-            <div className="mt-8 rounded-xl border border-white/10 bg-white/5 p-4 font-mono text-xs text-muted-foreground">
-              <span className="text-[oklch(0.85_0.18_200)]">$</span> status: <span className="text-foreground">available</span>
-              <br />
-              <span className="text-[oklch(0.85_0.18_200)]">$</span> response_time: <span className="text-foreground">~24h</span>
-            </div>
-          </motion.div>
+        {/* status strip */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mb-10 flex max-w-2xl flex-wrap items-center justify-center gap-x-6 gap-y-2 rounded-full glass px-6 py-3 font-mono text-xs"
+        >
+          <span className="flex items-center gap-2 text-foreground">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
+            </span>
+            available for new roles
+          </span>
+          <span className="text-muted-foreground">response ~24h</span>
+          <span className="flex items-center gap-1.5 text-muted-foreground">
+            <MapPin className="h-3 w-3 text-[oklch(0.85_0.18_200)]" /> India · remote-friendly
+          </span>
+        </motion.div>
 
-          <motion.form
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            onSubmit={(e) => { e.preventDefault(); setSent(true); setTimeout(() => setSent(false), 3000); }}
-            className="rounded-3xl glass-strong p-8 md:col-span-3"
-          >
-            <div className="grid gap-4">
-              {[
-                { name: "name", label: "Name", type: "text" },
-                { name: "email", label: "Email", type: "email" },
-              ].map((f) => (
-                <div key={f.name} className="group relative">
-                  <input
-                    required
-                    type={f.type}
-                    name={f.name}
-                    placeholder=" "
-                    className="peer w-full rounded-xl border border-white/10 bg-white/5 px-4 pt-5 pb-2 text-sm text-foreground outline-none transition-all focus:border-[oklch(0.65_0.28_300_/_0.6)] focus:bg-white/[0.07]"
-                  />
-                  <label className="pointer-events-none absolute left-4 top-3.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:text-[oklch(0.85_0.18_200)] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px]">
-                    {f.label}
-                  </label>
-                </div>
-              ))}
-              <div className="group relative">
-                <textarea
-                  required
-                  name="message"
-                  rows={5}
-                  placeholder=" "
-                  className="peer w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 pt-5 pb-2 text-sm text-foreground outline-none transition-all focus:border-[oklch(0.65_0.28_300_/_0.6)] focus:bg-white/[0.07]"
-                />
-                <label className="pointer-events-none absolute left-4 top-3.5 font-mono text-xs uppercase tracking-wider text-muted-foreground transition-all peer-focus:top-1.5 peer-focus:text-[10px] peer-focus:text-[oklch(0.85_0.18_200)] peer-[:not(:placeholder-shown)]:top-1.5 peer-[:not(:placeholder-shown)]:text-[10px]">
-                  Message
-                </label>
-              </div>
-            </div>
-            <button
-              type="submit"
-              className="group mt-6 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[oklch(0.65_0.28_300)] to-[oklch(0.7_0.22_250)] px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-neon transition-transform hover:scale-[1.01]"
+        {/* channel cards */}
+        <div className="grid gap-5 md:grid-cols-3">
+          {channels.map((c, i) => (
+            <motion.a
+              key={c.label}
+              href={c.href}
+              target={c.href.startsWith("http") ? "_blank" : undefined}
+              rel="noreferrer"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="group relative overflow-hidden rounded-3xl glass-strong p-7 transition-colors hover:border-[oklch(0.65_0.28_300_/_0.4)]"
             >
-              {sent ? "Message Sent ✓" : (<>Send Message <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" /></>)}
-            </button>
-          </motion.form>
+              <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-[oklch(0.65_0.28_300_/_0.6)] to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+              <div className="absolute -right-12 -top-12 h-40 w-40 rounded-full bg-[oklch(0.65_0.28_300_/_0.15)] opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100" />
+
+              <div className="flex items-start justify-between">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-[oklch(0.85_0.18_200)] transition-all group-hover:border-[oklch(0.85_0.18_200_/_0.4)] group-hover:bg-[oklch(0.85_0.18_200_/_0.1)]">
+                  <c.icon className="h-5 w-5" />
+                </div>
+                <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-all group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+              </div>
+
+              <div className="mt-8 font-mono text-[10px] uppercase tracking-[0.25em] text-muted-foreground">
+                {c.handle}
+              </div>
+              <div className="mt-1 text-lg font-semibold tracking-tight">{c.label}</div>
+              <div className="mt-1 truncate text-sm text-muted-foreground">{c.value}</div>
+            </motion.a>
+          ))}
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
+        >
+          <a
+            href="mailto:khyatijain@example.com"
+            className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[oklch(0.65_0.28_300)] to-[oklch(0.7_0.22_250)] px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-neon transition-transform hover:scale-[1.02]"
+          >
+            <Mail className="h-4 w-4" />
+            Start a conversation
+          </a>
+          <a
+            href="/Khyati_Jain_Resume.pdf"
+            download
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-white/20 hover:bg-white/10"
+          >
+            <Download className="h-4 w-4" />
+            Download résumé
+          </a>
+        </motion.div>
 
         <footer className="mt-24 flex flex-col items-center justify-between gap-3 border-t border-white/5 pt-8 text-xs text-muted-foreground md:flex-row">
           <div>© {new Date().getFullYear()} Khyati Jain. Built with care.</div>
