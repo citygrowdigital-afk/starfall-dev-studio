@@ -4,15 +4,15 @@ import { Mail, Linkedin, MapPin, Github, ArrowUpRight, Download } from "lucide-r
 const channels = [
   {
     label: "Email",
-    value: "khyatijain@example.com",
-    href: "mailto:khyatijain@example.com",
+    value: "khyatijain2802@gmail.com",
+    href: "mailto:khyatijain2802@gmail.com",
     icon: Mail,
     handle: "// drop a line",
   },
   {
     label: "LinkedIn",
-    value: "in/khyati-jain",
-    href: "https://linkedin.com/in/khyati-jain",
+    value: "in/khyati~jain/",
+    href: "https://www.linkedin.com/in/khyati~jain/",
     icon: Linkedin,
     handle: "// let's connect",
   },
@@ -118,7 +118,7 @@ export function Contact() {
           className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
         >
           <a
-            href="mailto:khyatijain@example.com"
+            href="mailto:khyatijain2802@gmail.com"
             className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[oklch(0.65_0.28_300)] to-[oklch(0.7_0.22_250)] px-6 py-3.5 text-sm font-medium text-primary-foreground shadow-neon transition-transform hover:scale-[1.02]"
           >
             <Mail className="h-4 w-4" />
@@ -130,7 +130,7 @@ export function Contact() {
             className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-medium text-foreground transition-colors hover:border-white/20 hover:bg-white/10"
           >
             <Download className="h-4 w-4" />
-            Download résumé
+            Download resume
           </a>
         </motion.div>
 
