@@ -39,7 +39,7 @@ function Blob() {
   });
   return (
     <Sphere ref={ref} args={[1.4, 64, 64]} position={[0, 0, 0]}>
-      {/* @ts-expect-error drei typing */}
+      
       <MeshDistortMaterial color="#7c3aed" roughness={0.2} metalness={0.8} distort={0.45} speed={2} emissive="#4c1d95" emissiveIntensity={0.4} />
     </Sphere>
   );
