@@ -119,9 +119,9 @@ export function Hero() {
           className="mt-10 flex items-center gap-3"
         >
           {[
-            { Icon: Linkedin, href: "https://linkedin.com/in/khyati-jain", label: "LinkedIn" },
-            { Icon: Github, href: "https://github.com/khyatijain", label: "GitHub" },
-            { Icon: Mail, href: "mailto:khyatijain@example.com", label: "Email" },
+            { Icon: Linkedin, href: "https://www.linkedin.com/in/khyati~jain/", label: "LinkedIn" },
+            { Icon: Github, href: "#", label: "GitHub" },
+            { Icon: Mail, href: "mailto:khyatijain2802@gmail.com", label: "Email" },
           ].map(({ Icon, href, label }) => (
             <a
               key={label}
